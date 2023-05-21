@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/delete_person_item"
+        android:icon="@drawable/ic_baseline_delete_24"
+        android:title="@string/delete_person"
+        app:showAsAction="never" />
+<!--        <item-->
+<!--            android:id="@+id/notification_item"-->
+<!--            android:icon="@drawable/ic_notification"-->
+<!--            android:title="@string/notify_label_string"-->
+<!--            app:showAsAction="ifRoom" />-->
+</menu>

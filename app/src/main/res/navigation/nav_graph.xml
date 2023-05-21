@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/peopleFragment">
+
+    <fragment
+        android:id="@+id/addPersonFragment"
+        android:name="org.d3if3095.reminder.screens.edit.AddPersonFragment"
+        android:label="@string/add_person"
+        tools:layout="@layout/add_person_fragment" >
+        <action
+            android:id="@+id/action_addPersonFragment_to_peopleFragment"
+            app:destination="@id/peopleFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/peopleFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/peopleFragment"
+        android:name="org.d3if3095.reminder.screens.people.PeopleFragment"
+        android:label="@string/people"
+        tools:layout="@layout/people_fragment">
+        <action
+            android:id="@+id/action_peopleFragment_to_addPersonFragment"
+            app:destination="@id/addPersonFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_peopleFragment_to_personDetailsFragment"
+            app:destination="@id/personDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_peopleFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personDetailsFragment"
+        android:name="org.d3if3095.reminder.screens.details.PersonDetailsFragment"
+        android:label="@string/person_details_fragment"
+        tools:layout="@layout/person_details_fragment">
+        <argument
+            android:name="personId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="org.d3if3095.reminder.SettingFragment"
+        android:label="@string/settings" />
+</navigation>
