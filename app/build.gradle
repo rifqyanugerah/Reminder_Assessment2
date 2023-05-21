@@ -9,7 +9,7 @@ plugins {
 android {
     namespace 'org.d3if3095.reminder'
     compileSdk 33
-    buildToolsVersion "29.0.3"
+    buildToolsVersion "33.0.0"
 
     defaultConfig {
         applicationId 'org.d3if3095.reminder'
@@ -88,6 +88,7 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.44.2'
     implementation "androidx.compose.ui:ui-tooling-preview:1.4.3"
     implementation 'androidx.preference:preference-ktx:1.2.0'
+    implementation 'androidx.datastore:datastore-preferences:1.0.0'
     kapt 'com.google.dagger:hilt-compiler:2.44.2'
     kapt 'androidx.room:room-compiler:2.5.1'
     testImplementation 'junit:junit:4.13.2'

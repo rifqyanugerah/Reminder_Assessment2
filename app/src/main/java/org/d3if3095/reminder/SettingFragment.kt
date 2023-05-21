@@ -1,18 +1,20 @@
 package org.d3if3095.reminder
 
-import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.preference.*
 import org.d3if3095.reminder.notifications.AlarmReceiver
 import org.d3if3095.reminder.utils.ThemeHelper
 import java.util.*
 
 class SettingFragment : PreferenceFragmentCompat() {
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preference_screen, rootKey)
 
@@ -66,6 +68,7 @@ class SettingFragment : PreferenceFragmentCompat() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun initializeTheAlarm(times: String) {
         Log.i(TAG, "initializeTheAlarm: $times")
 
@@ -87,7 +90,7 @@ class SettingFragment : PreferenceFragmentCompat() {
         startTheAlarm(calendar, interval)
     }
 
-    @SuppressLint("UnspecifiedImmutableFlag")
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun startTheAlarm(calendar: Calendar, interval: Long) {
         val alarmManager =
             context?.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
@@ -96,7 +99,7 @@ class SettingFragment : PreferenceFragmentCompat() {
             context,
             ALARM_REQUEST_CODE,
             intent,
-            PendingIntent.FLAG_CANCEL_CURRENT
+            PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
         alarmManager?.setRepeating(
@@ -107,7 +110,7 @@ class SettingFragment : PreferenceFragmentCompat() {
         )
     }
 
-    @SuppressLint("UnspecifiedImmutableFlag")
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun cancelTheAlarm() {
         val alarmManager =
             context?.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
@@ -116,18 +119,18 @@ class SettingFragment : PreferenceFragmentCompat() {
             context,
             ALARM_REQUEST_CODE,
             intent,
-            PendingIntent.FLAG_CANCEL_CURRENT
+            PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         alarmManager?.cancel(pendingIntent)
     }
 
-//        fun showNextAlarm() {
-//        val alarmManager =
-//            context?.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
-//        val info: AlarmManager.AlarmClockInfo? = alarmManager?.nextAlarmClock
-//        val nextAlarm = info?.triggerTime
-//        Log.i(TAG, "showNextAlarm: $nextAlarm")
-//    }
+        fun showNextAlarm() {
+        val alarmManager =
+            context?.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
+        val info: AlarmManager.AlarmClockInfo? = alarmManager?.nextAlarmClock
+        val nextAlarm = info?.triggerTime
+        Log.i(TAG, "showNextAlarm: $nextAlarm")
+    }
     companion object {
         const val ALARM_REQUEST_CODE = 0
         private const val TAG = "SettingFragment"

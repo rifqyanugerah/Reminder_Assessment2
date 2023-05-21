@@ -50,4 +50,6 @@
     <string name="reminder">Reminder</string>
     <string name="ReminderMe">Reminder Me</string>
     <string name="add_activity">Add Activity</string>
+
+    <string name="switch_layout">Ubah tampilan</string>
 </resources>
